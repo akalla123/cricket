@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<style>
+.image{
+  height: 250px;
+  width: 250px;
+  border-radius: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: transparent;
+    color: black;
+}
+</style>
+</head>
+<body background="http://imageshack.com/a/img922/8855/hw1Ddt.jpg">
+  <CENTER>
+  	<p class="img">
+
+  </CENTER>
+
+  </p>
+  
+
+<CENTER><h2 class = "fname"></h2></CENTER>
+<div  class = "profile" ></div>
+<p> 
+<table>
+  <tr>
+    <th>Batting Style:</th>
+    <td class = "abcd1"></td>
+  </tr>
+  <tr>
+    <th>Born:</th>
+    <td class = "abcd2"></td>
+  </tr>
+  <tr>
+    <th>Bowling Style:</th>
+    <td class = "abcd3"></td>
+  </tr>
+  <tr>
+    <th>Country:</th>
+    <td class = "abcd4"></td>
+  </tr>
+</table>
+</p>
+<p>
+	<br><br>
+<CENTER><h3>Batting Stats</h3></CENTER>
+<table>
+  <tr>
+    <th>Matches:</th>
+    <td class = "abcd1a"></td>
+  </tr>
+  <tr>
+    <th>Innings:</th>
+    <td class = "abcd2b"></td>
+  </tr>
+  <tr>
+    <th>Runs:</th>
+    <td class = "abcd3c"></td>
+  </tr>
+  <tr>
+    <th>Not Outs:</th>
+    <td class = "abcd4d"></td>
+  </tr>
+  <tr>
+    <th>Average:</th>
+    <td class = "abcd5e"></td>
+  </tr>
+  <tr>
+    <th>Strike Rate:</th>
+    <td class = "abcd6f"></td>
+  </tr>
+  <tr>
+    <th>Balls Faced:</th>
+    <td class = "abcd7g"></td>
+  </tr>
+  <tr>
+    <th>Highest:</th>
+    <td class = "abcd8h"></td>
+  </tr>
+</table>
+</p>
+<p><br><br>
+<CENTER><h3>Bowling Stats</h3></CENTER>
+<table>
+  <tr>
+    <th>Matches:</th>
+    <td class = "abcd1aa"></td>
+  </tr>
+  <tr>
+    <th>Innings:</th>
+    <td class = "abcd2bb"></td>
+  </tr>
+  <tr>
+    <th>Runs:</th>
+    <td class = "abcd3cc"></td>
+  </tr>
+  <tr>
+    <th>Wickets:</th>
+    <td class = "abcd4dd"></td>
+  </tr>
+  <tr>
+    <th>Average:</th>
+    <td class = "abcd5ee"></td>
+  </tr>
+  <tr>
+    <th>Balls:</th>
+    <td class = "abcd6ff"></td>
+  </tr>
+  <tr>
+    <th>Economy:</th>
+    <td class = "abcd7gg"></td>
+  </tr>
+  <tr>
+    <th>5 Wickets:</th>
+    <td class = "abcd8hh"></td>
+  </tr>
+</table>
+
+</p>
+</body>
+<script type="text/javascript">
+	
+
+	$(document).ready(function() {
+    $.ajax({
+        url: "http://cricapi.com/api/playerStats?apikey=YrVTgMZLdMMQBGggwe1Hzh1jWD83&&pid=44828",
+
+    }).then(function(data) {
+      // $('.greeting-id').append(data.id);
+      // $('.greeting-content').append(data.content);
+      console.log(data);
+      img = 
+      console.log(data.name +'\n'+ data.playingRole);
+$( ".abcd1" ).append( ''+ data.battingStyle + '' );
+$( ".abcd2" ).append( ''+ data.born + '' );
+$( ".abcd3" ).append( ''+ data.bowlingStyle + '' );
+$( ".abcd4" ).append( ''+ data.country + '' );
+$( ".abcd1a" ).append( ''+ data.data.batting.ODIs.Mat + '' );
+$( ".abcd2b" ).append( ''+ data.data.batting.ODIs.Inns + '' );
+$( ".abcd3c" ).append( ''+ data.data.batting.ODIs.Runs + '' );
+$( ".abcd4d" ).append( ''+ data.data.batting.ODIs.NO + '' );
+$( ".abcd5e" ).append( ''+ data.data.batting.ODIs.Ave + '' );
+$( ".abcd6f" ).append( ''+ data.data.batting.ODIs.SR + '' );
+$( ".abcd7g" ).append( ''+ data.data.batting.ODIs.BF + '' );
+$( ".abcd8h" ).append( ''+ data.data.batting.ODIs.HS + '' );
+
+$( ".abcd1aa" ).append( ''+ data.data.bowling.ODIs.Mat + '' );
+$( ".abcd2bb" ).append( ''+ data.data.bowling.ODIs.Inns + '' );
+$( ".abcd3cc" ).append( ''+ data.data.bowling.ODIs.Runs + '' );
+$( ".abcd4dd" ).append( ''+ data.data.bowling.ODIs.Wkts + '' );
+$( ".abcd5ee" ).append( ''+ data.data.bowling.ODIs.Ave + '' );
+$( ".abcd6ff" ).append( ''+ data.data.bowling.ODIs.Balls + '' );
+$( ".abcd7gg" ).append( ''+ data.data.bowling.ODIs.Econ + '' );
+$( ".abcd8hh" ).append( ''+ data.data.bowling.ODIs["5w"] + '' );
+
+$( ".profile" ).append( ''+ data.profile + '' );
+$( ".fname" ).append( ''+ data.fullName + '' );
+$( ".name" ).append( ''+ data.name + '' );
+
+$(".img").wrap( "<img class='image' src= " + "'" + data.imageURL + "'" + "/>");
+    });
+});
+
+
+
+</script>>
+
+</html>
